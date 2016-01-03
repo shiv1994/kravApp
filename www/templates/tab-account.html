@@ -1,9 +1,28 @@
 <ion-view view-title="Account">
-  <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+  <ion-content ng-init="check();">
+
+    <!-- show if user is logged in -->
+    <div ng-if="isLoggedIn == true" class="list card">
+
+      <div class="item item-avatar">
+        <img ng-src="{{profileImageURL}}">
+        <h2>{{displayName}}</h2>
+        <p>UWI Guild Combat Readiness</p>
+      </div>
+    </div>
+
+    <div ng-if="isLoggedIn == true" class="padding">
+      <button class="button button-block button-positive" ng-click="logout();">
+        Facebook Logout
+      </button>
+    </div>
+
+    <!-- show if user is not logged in -->
+    <div ng-if="isLoggedIn == false" class="padding">
+      <button class="button button-block button-positive" ng-click="login();">
+        Facebook Login
+      </button>
+    </div>
+
   </ion-content>
 </ion-view>
