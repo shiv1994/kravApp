@@ -43,6 +43,10 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('GalleryCtrl', function($scope){
+    
+})
+
 .controller('AccountCtrl', function($scope) {
 
   $scope.isLoggedIn = false;
