@@ -1,23 +1,21 @@
-<ion-view view-title="Account">
+<ion-view view-title="Me">
   <ion-content ng-init="check();">
+    <div ng-if="isLoggedIn == true" id="profile-bg">
+    </div>
+    <div ng-if="isLoggedIn == true" id="content">
+      <div id="profile-info">
+        <img id="profile-image" ng-src="{{profileImageURL}}">
+        <h3 id="profile-name">{{displayName}}</h3>
+        <span id="profile-description">UWI Guild Combat Readiness</span>
+      </div>
 
-    <!-- show if user is logged in -->
-    <div ng-if="isLoggedIn == true" class="list card">
-
-      <div class="item item-avatar">
-        <img ng-src="{{profileImageURL}}">
-        <h2>{{displayName}}</h2>
-        <p>UWI Guild Combat Readiness</p>
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="logout();">
+          Facebook Logout
+        </button>
       </div>
     </div>
 
-    <div ng-if="isLoggedIn == true" class="padding">
-      <button class="button button-block button-positive" ng-click="logout();">
-        Facebook Logout
-      </button>
-    </div>
-
-    <!-- show if user is not logged in -->
     <div ng-if="isLoggedIn == false" class="padding">
       <button class="button button-block button-positive" ng-click="login();">
         Facebook Login

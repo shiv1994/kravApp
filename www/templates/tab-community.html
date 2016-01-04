@@ -1,0 +1,21 @@
+<ion-view view-title="Community">
+  <ion-content ng-init="loadQuestions();loadUsers();">
+
+    <!-- list of questions in the community -->
+    <div class="list">
+
+      <a ng-repeat="question in questions" class="item item-avatar" href="#">
+        <img ng-src="{{users[question.askerId].image}}">
+        <h2>{{users[question.askerId].name}} asked: </h2>
+        <p>{{question.text}}</p>
+      </a>
+
+    </div>
+
+    <div class="padding">
+      <button class="button button-block button-positive">
+        Ask a Question
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

@@ -21,6 +21,28 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
+.controller('CommunityCtrl', function($scope, $firebaseObject){
+
+  $scope.questions = null;
+  $scope.users = null;
+
+
+  $scope.loadQuestions = function(){
+
+    var firebaseURI = "https://krav-maga-app.firebaseio.com/";
+    var ref = new Firebase(firebaseURI + "community/questions");
+    $scope.questions = $firebaseObject(ref);
+
+  };
+
+  $scope.loadUsers = function(){
+    var firebaseURI = "https://krav-maga-app.firebaseio.com/";
+    var ref = new Firebase(firebaseURI + "users");
+    $scope.users = $firebaseObject(ref);
+  };
+
+})
+
 .controller('AccountCtrl', function($scope) {
 
   $scope.isLoggedIn = false;
@@ -67,7 +89,16 @@ angular.module('starter.controllers', [])
         /* this load may cause a race condition, need to test, seems to work. */
         $scope.load();
         $scope.$apply();
+
+        /* save user data to firebase */
+        var saveRef = new Firebase(firebaseURI + "users/" + authData.uid);
+        saveRef.set({
+          "name" : authData.facebook.displayName,
+          "image" : authData.facebook.profileImageURL
+
+        });
       }
+
     });
 
   };
