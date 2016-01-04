@@ -5,15 +5,16 @@
     <div class="list">
 
       <a ng-repeat="question in questions" class="item item-avatar" href="#">
-        <img ng-src="{{users[question.askerId].image}}">
-        <h2>{{users[question.askerId].name}} asked: </h2>
+        <img ng-src="{{users[question.by].image}}">
+        <h2>{{users[question.by].name}} asked: </h2>
         <p>{{question.text}}</p>
+        <p>Replies: {{question.totalReplies}} </p>
       </a>
 
     </div>
 
     <div class="padding">
-      <button class="button button-block button-positive">
+      <button class="button button-block button-positive" ui-sref="tab.community-ask-a-question">
         Ask a Question
       </button>
     </div>

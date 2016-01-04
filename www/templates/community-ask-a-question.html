@@ -1,0 +1,15 @@
+<ion-view view-title="Ask a Question">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">My Question</span>
+        <input ng-model="questionText" type="text" placeholder="What is your question?">
+      </label>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="askQuestion(questionText);">
+        Post Question
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

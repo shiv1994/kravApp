@@ -107,6 +107,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
+  .state('tab.community-ask-a-question', {
+    url: '/community-ask-a-question',
+    views: {
+      'tab-community': {
+        templateUrl: 'templates/community-ask-a-question.html',
+        controller: 'CommunityCtrl'
+      }
+    }
+  })
+
   ;
 
   // if none of the above states are matched, use this as the fallback

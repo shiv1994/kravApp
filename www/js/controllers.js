@@ -21,11 +21,11 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('CommunityCtrl', function($scope, $firebaseObject){
+.controller('CommunityCtrl', function($scope, $state, $firebaseObject){
 
   $scope.questions = null;
   $scope.users = null;
-
+  $scope.questionText = "What is your question?";
 
   $scope.loadQuestions = function(){
 
@@ -39,6 +39,53 @@ angular.module('starter.controllers', [])
     var firebaseURI = "https://krav-maga-app.firebaseio.com/";
     var ref = new Firebase(firebaseURI + "users");
     $scope.users = $firebaseObject(ref);
+  };
+
+  $scope.askQuestion = function(questionText){
+
+    /* we must first check if the user is logged in. */
+    var authData = JSON.parse(localStorage.getItem("krav-maga-app-authData"));
+    if(authData === null){
+      /* dialog alert that you must be signed in. */
+      /* go back to community tab. */
+      $state.go("tab.community");
+      /* alert the user of failure. */
+      navigator.notification.alert(
+        'Question was not posted becuase you are not logged in.',  // message
+        function(){},         // callback
+        'Question was not posted',            // title
+        'OK'                  // buttonName
+      );
+    }
+    else{
+      /* we can post the question. */
+
+      /* get the id of currently logged in user. */
+      var userId = authData.uid;
+
+      /* do a firebase database write. */
+      var firebaseURI = "https://krav-maga-app.firebaseio.com/";
+      var ref = new Firebase(firebaseURI + "community/questions");
+      ref.push({
+        'by' : userId,
+        'text' : questionText,
+        'totalReplies' : 0
+      });
+
+      /* go back to community tab. */
+      $state.go("tab.community");
+
+      /* alert the user of success. */
+      navigator.notification.alert(
+        'Question posted successfully.',  // message
+        function(){},         // callback
+        'Question Posted.',            // title
+        'OK'                  // buttonName
+      );
+
+
+
+    }
   };
 
 })
