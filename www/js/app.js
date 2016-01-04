@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase','uiGmapgoogle-maps'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -24,7 +24,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
-
+    // uiGmapGoogleMapApiProvider
+//   uiGmapGoogleMapApiProvider.configure({
+//         key: 'AIzaSyAz7hG7XM7CcHEzavDHGf7ODIU76U7WhvA',
+//         v: '3.20', //defaults to latest 3.X anyhow
+//         libraries: 'weather,geometry,visualization'
+//   });
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -93,6 +98,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab-home': {
         templateUrl: 'templates/home-programme-overview.html'
+      }
+    }
+  })
+  
+  .state('tab.home-gallery', {
+    url: '/home-gallery',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/home-gallery.html'
+      }
+    }
+  })
+  
+  .state('tab.home-location', {
+    url: '/home-location',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/home-location.html',
+        controller:  'LocationCtrl'
       }
     }
   })
