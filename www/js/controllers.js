@@ -92,9 +92,19 @@ angular.module('starter.controllers', [])
 
 .controller('LocationCtrl', function($scope){
     $scope.map = { 
-        center: { latitude: 45, longitude: -73 }, 
-        zoom: 8 
+        center: { latitude: 10.639269, longitude: -61.397047 }, 
+        zoom: 18
     };
+    $scope.markers=[{
+      "id": "0",
+      "coords": {
+        "latitude": "10.639269",
+        "longitude": "-61.397047"
+      },
+      "window": {
+        "title": "Spec Field - UWI"
+      }
+    }]
 })
 
 .controller('GalleryCtrl', function($scope){

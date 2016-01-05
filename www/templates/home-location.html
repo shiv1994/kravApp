@@ -10,9 +10,16 @@
       </div>
     </div>-->
     
-    <ion-view view-title="Google Maps V3 example">      
+    <ion-view view-title="UWI Combat Readiness Club Meeting Location">      
         <ion-content data-tap-disabled="true">
-            <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+            <ui-gmap-google-map id="map" center='map.center' zoom='map.zoom' >
+                <ui-gmap-marker ng-repeat="marker in markers"
+                    coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                     <ui-gmap-window>
+                        <div>{{marker.window.title}}</div>
+                    </ui-gmap-window>
+                </ui-gmap-marker>    
+            </ui-gmap-google-map>
         </ion-content>
     </ion-view>
 <!--    
